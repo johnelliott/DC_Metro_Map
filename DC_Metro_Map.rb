@@ -48,3 +48,7 @@ def stopFind(stop1, stop2)
 end
 
 stopFind("beltwater", "crystal city")
+
+
+def find_line
+
