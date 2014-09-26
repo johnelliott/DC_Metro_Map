@@ -28,27 +28,20 @@ require 'pry'
 ["metro center", "federal triangle", "smithsonian", "lenfant plaza"]
 ]
 
-# puts @stop_array.index("metro center")
-
-def stopFind(stop1, stop2)
-   index1 = 0
-   index2 = 0
-
-   @stop_array.each do |line|
-      index1 = line.index(stop1)
-   end
-   @stop_array.each do |line|
-      index2 = line.index(stop2)
-      puts index2
-   end
-   binding.pry
-   output = index1 + index2
-
-   puts output.to_s
+def count_stops_to_hub(stop)
+   @stop_array.map { |line| line.find_index(stop) }.compact[0]
 end
 
-stopFind("beltwater", "crystal city")
+def trip(beginning_stop, ending_stop)
+   count_stops_to_hub(beginning_stop) + count_stops_to_hub(ending_stop)
+end
 
+def same_line_?(beginning_stop, ending_stop)
+   return @stop_array.map { |line| line.include?(beginning_stop) && line.include?(ending_stop) }.include?(true)
+end
 
-def find_line
+#tests for sameline
+
+same_line_?("federal triangle", "smithsonian") # true
+same_line_?("federal triangle", "beltwater") # false
 
