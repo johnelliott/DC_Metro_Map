@@ -16,7 +16,7 @@ class Metro
    def are_both_stops_on_the_same_line(stop1, stop2)
       if stop1 == "metro center"
          line = stop_array.find{|line| line.include? stop2}
-         line.include?(stop1 && stop2)
+         line.include?(stop1)
       else
          line = stop_array.find{|line| line.include? stop1}
          line.include?(stop1 && stop2)
@@ -56,7 +56,7 @@ class Metro
       color2 = gets.chomp.downcase
       puts color_line_chooser(color2)
       stop2 = gets.chomp.downcase
-      puts "**********************#{stop2} will be your #{number_of_stops(stop1, stop2).ordinalize} stop!**********************"
+      puts "\n\n\n\n\n**********************#{stop2} will be your #{number_of_stops(stop1, stop2).ordinalize} stop!**********************\n\n\n\n\n"
    end
 
    Metro.new.run
@@ -89,7 +89,7 @@ class Test < MiniTest::Unit::TestCase
    end
 
    def test_assert_equal
-      assert_equal(1, 1)
+      assert_equal(2, 1)
    end
 
 end
