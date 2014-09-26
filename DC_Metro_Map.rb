@@ -20,28 +20,31 @@
 require 'pry'
 
 @stop_array = [
-["metro center", "crystal city"],
-["metro center", "shaw-howard", "beltwater"],
-["metro center", "farragut north", "dupont circle", "woodley park"],
-["metro center", "judiciary square", "union station"],
-["metro center", "mcpherson square", "farragut west"],
-["metro center", "federal triangle", "smithsonian", "lenfant plaza"]
+    ["metro center", "crystal city"],
+    ["metro center", "shaw-howard", "beltwater"],
+    ["metro center", "farragut north", "dupont circle", "woodley park"],
+    ["metro center", "judiciary square", "union station"],
+    ["metro center", "mcpherson square", "farragut west"],
+    ["metro center", "federal triangle", "smithsonian", "lenfant plaza"]
 ]
 
 def count_stops_to_hub(stop)
-   @stop_array.map { |line| line.find_index(stop) }.compact[0]
+    @stop_array.map { |line| line.find_index(stop) }.compact[0]
+end
+
+def same_line?(beginning_stop, ending_stop)
+    return @stop_array.map { |line| line.include?(beginning_stop) && line.include?(ending_stop) }.include?(true)
 end
 
 def trip(beginning_stop, ending_stop)
-   count_stops_to_hub(beginning_stop) + count_stops_to_hub(ending_stop)
+    unless same_line?(beginning_stop, ending_stop)
+      count_stops_to_hub(beginning_stop) + count_stops_to_hub(ending_stop)
+    else
+      count_stops_to_hub(ending_stop) - count_stops_to_hub(beginning_stop)
+    end
 end
 
-def same_line_?(beginning_stop, ending_stop)
-   return @stop_array.map { |line| line.include?(beginning_stop) && line.include?(ending_stop) }.include?(true)
-end
+#tests
 
-#tests for sameline
-
-same_line_?("federal triangle", "smithsonian") # true
-same_line_?("federal triangle", "beltwater") # false
-
+trip("federal triangle", "smithsonian")   # Expect => 1
+trip("federal triangle", "beltwater")     # Expect => 3
