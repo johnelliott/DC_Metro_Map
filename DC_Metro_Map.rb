@@ -1,6 +1,7 @@
 # takes the line and stop that a user is getting on at and the line and 
 # stop that user is getting off at and prints the total number of stops for the trip
 
+#data ---------------------------------------------------------------------
 @red = ['Woodley Park', 'Dupont Circle', 'Farragut North', 'Metro Center', 'Judiciary Square', 'Union Station']
 @turquoise = ['Crystal City', 'Metro Center', 'Shaw-Howard', 'Beltwater']
 @orange = ['Farragut West', 'McPherson Sq', 'Metro Center', 'Federal Triangle', 'Smithsonian', "L'enfant Plaza"]
@@ -18,20 +19,10 @@ def build_array(*lines)
   stop_array.flatten(2)
 end
 
-# this is now created
-# @stop_array = [
-#     ["metro center", "crystal city"],
-#     ["metro center", "shaw-howard", "beltwater"],
-#     ["metro center", "farragut north", "dupont circle", "woodley park"],
-#     ["metro center", "judiciary square", "union station"],
-#     ["metro center", "mcpherson square", "farragut west"],
-#     ["metro center", "federal triangle", "smithsonian", "lenfant plaza"]
-# ]
-
 #build data structure
 @stop_array = build_array(@red, @orange, @turquoise)
 
-# logic
+# logic -----------------------------------------------------------------
 def count_stops_to_hub(stop)
     @stop_array.map { |line| line.find_index(stop) }.compact[0]
 end
@@ -48,10 +39,10 @@ def trip(beginning_stop, ending_stop)
     end
 end
 
-# UI
+# UI ---------------------------------------------------------------------
 stops_entered = []
 
-puts "Enter two metro stops to see the number of stops between them: "
+puts "Enter two metro station names to see the number of stops between them: "
 
 while stops_entered.count < 2
    stops_entered<<gets.chomp 
