@@ -1,4 +1,4 @@
-#data
+# data
 
 # @stop_array = [
 #     ["metro center", "crystal city"],
@@ -28,3 +28,9 @@ end
 
 #build data structure
 @stop_array = build_array(@red, @orange, @turquoise)
+
+# build map for UI
+dc_metro = {}
+dc_metro[:red] = @red
+dc_metro[:turquoise] = @turquoise
+dc_metro[:orange] = @orange

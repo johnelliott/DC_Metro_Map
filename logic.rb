@@ -8,6 +8,7 @@ end
 
 def same_line?(beginning_stop, ending_stop)
     @stop_array.map { |line| line.include?(beginning_stop) && line.include?(ending_stop) }.include?(true)
+    @stop_array.any? { |line| line.include?(beginning_stop) && line.include?(ending_stop) }
 end
 
 def trip(beginning_stop, ending_stop)
